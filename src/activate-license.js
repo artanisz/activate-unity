@@ -9,10 +9,10 @@ async function run() {
         if (!unityPath) {
             throw new Error('unity path not found');
         }
-        const unityUsername = core.getInput('unity-username', { required: true });
-        const unityPassword = core.getInput('unity-password', { required: true });
-        const unityAuthenticatorKey = core.getInput('unity-authenticator-key');
-        const unitySerial = core.getInput('unity-serial');
+        const unityUsername = core.getInput('unity-username') || process.env.UNITY_USERNAME;
+        const unityPassword = core.getInput('unity-password') || process.env.UNITY_PASSWORD;
+        const unityAuthenticatorKey = core.getInput('unity-authenticator-key') || process.env.UNITY_AUTHENTICATOR_KEY;
+        const unitySerial = core.getInput('unity-serial') || process.env.UNITY_SERIAL;
 
         if (unitySerial) {
             await unity.activateSerialLicense(unityPath, unityUsername, unityPassword, unitySerial);
