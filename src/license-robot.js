@@ -15,7 +15,10 @@ async function getPersonalLicense(licenseRequestFile, username, password, authen
 }
 
 async function browser_getPersonalLicense(licenseRequestData, username, password, authenticatorKey, headless) {
-    const browser = await puppeteer.launch({ headless: headless });
+    const browser = await puppeteer.launch({
+        headless: headless,
+        args: ["--no-sandbox"]
+    });
     try {
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(120 * 1000);
